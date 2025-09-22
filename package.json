@@ -1,0 +1,22 @@
+{
+  "name": "javascript-tdd-exercises",
+  "version": "1.0.0",
+  "description": "Exercices JavaScript progressifs en Test-Driven Development",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test-runner.js",
+    "test:level": "node test-runner.js --level",
+    "test:exercise": "node test-runner.js --exercise"
+  },
+  "keywords": [
+    "javascript",
+    "tdd",
+    "exercises",
+    "learning"
+  ],
+  "author": "Nolan",
+  "license": "MIT",
+  "devDependencies": {
+    "colors": "^1.4.0"
+  }
+}
