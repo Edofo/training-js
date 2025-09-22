@@ -6,7 +6,10 @@
   "scripts": {
     "test": "node test-runner.js",
     "test:level": "node test-runner.js --level",
-    "test:exercise": "node test-runner.js --exercise"
+    "test:exercise": "node test-runner.js --exercise",
+    "watch": "node test-runner.js --watch",
+    "watch:level": "node test-runner.js --watch --level",
+    "watch:exercise": "node test-runner.js --watch --exercise"
   },
   "keywords": [
     "javascript",

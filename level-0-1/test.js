@@ -22,7 +22,6 @@ function assertEquals(actual, expected, message = '') {
   }
 }
 
-// Capture de console.log pour vérifier la sortie
 let consoleOutput = [];
 const originalLog = console.log;
 console.log = (...args) => {
@@ -30,7 +29,6 @@ console.log = (...args) => {
   originalLog(...args);
 };
 
-// Charger et exécuter le code de l'élève
 try {
   const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
   eval(studentCode);
@@ -39,7 +37,6 @@ try {
   process.exit(1);
 }
 
-// Restaurer console.log
 console.log = originalLog;
 
 test('Doit afficher "Hello World!" dans la console', () => {

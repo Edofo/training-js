@@ -106,6 +106,25 @@ npm run test:exercise 2.3
 npm test -- --help
 ```
 
+### 🔥 Mode Watch (Auto-reload)
+```bash
+# Avec npm
+npm run watch                    # Surveille tout et montre la progression
+npm run watch:level 0            # Surveille seulement le niveau 0
+npm run watch:exercise 0.1       # Surveille seulement l'exercice 0.1
+
+# Avec yarn
+yarn watch:level 0               # Surveille seulement le niveau 0
+yarn watch:exercise 0.1          # Surveille seulement l'exercice 0.1
+
+# Arrêter la surveillance : Ctrl+C
+```
+
+**💡 Le mode watch est parfait pour :**
+- Éviter de relancer manuellement les tests à chaque modification
+- Voir immédiatement si votre code fonctionne après une sauvegarde
+- Travailler en mode TDD efficace (Red-Green-Refactor)
+
 ### Navigation
 - **Ordre recommandé** : Suivez l'ordre numérique (0.1 → 0.2 → ... → 3.5)
 - **Blocage** : Si vous êtes bloqué, consultez `tips.md` dans le dossier de l'exercice

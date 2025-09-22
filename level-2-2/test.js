@@ -45,11 +45,9 @@ test('Doit avoir une méthode getAge', () => {
 });
 
 test('La méthode getAge doit calculer l\'âge correctement', () => {
-  // Test avec une voiture de 2020
   if (voiture.annee === 2020) {
     assertEquals(voiture.getAge(), 5, 'Une voiture de 2020 doit avoir 5 ans en 2025');
   } else {
-    // Test générique : l'âge doit être positif et cohérent
     const age = voiture.getAge();
     assertEquals(typeof age, 'number', 'getAge() doit retourner un nombre');
     assertEquals(age >= 0, true, 'L\'âge doit être positif');

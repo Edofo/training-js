@@ -84,18 +84,16 @@ test('Doit retourner un nouveau tableau (ne pas modifier l\'original)', () => {
     { nom: "Charlie", age: 30 },
     { nom: "Alice", age: 25 }
   ];
-  const original = JSON.parse(JSON.stringify(personnes)); // Copie profonde
+  const original = JSON.parse(JSON.stringify(personnes));
   
   const resultat = trierPersonnes(personnes, "nom");
   
-  // Vérifier que l'original n'a pas changé
   assertEquals(
     JSON.stringify(personnes), 
     JSON.stringify(original),
     'Le tableau original ne doit pas être modifié'
   );
   
-  // Vérifier que c'est un nouveau tableau
   assertEquals(
     resultat !== personnes,
     true,
@@ -122,7 +120,6 @@ test('Doit gérer les noms identiques en triant par âge', () => {
   
   const resultat = trierPersonnes(personnes, "nom");
   
-  // Doit rester dans l'ordre ou être trié par âge comme critère secondaire
   assertEquals(resultat.length, 3, 'Doit conserver tous les éléments');
   assertEquals(resultat[0].nom, "Alice", 'Tous les noms doivent être Alice');
   assertEquals(resultat[1].nom, "Alice", 'Tous les noms doivent être Alice');

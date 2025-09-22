@@ -46,7 +46,7 @@ test('Doit définir la fonction compterJusqua', () => {
 });
 
 test('Doit compter de 1 à 3', () => {
-  consoleOutput = []; // Reset
+  consoleOutput = [];
   const originalLog2 = console.log;
   console.log = (...args) => {
     consoleOutput.push(args.join(' '));
@@ -74,7 +74,7 @@ test('Doit compter de 1 à 3', () => {
 });
 
 test('Doit compter de 1 à 5', () => {
-  consoleOutput = []; // Reset
+  consoleOutput = []; 
   const originalLog3 = console.log;
   console.log = (...args) => {
     consoleOutput.push(args.join(' '));

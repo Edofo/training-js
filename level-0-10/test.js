@@ -22,7 +22,6 @@ function assertEquals(actual, expected, message = '') {
   }
 }
 
-// Test du contenu HTML
 test('Doit contenir un fichier HTML avec un bouton', () => {
   const htmlFile = path.join(__dirname, 'index.html');
   assertEquals(fs.existsSync(htmlFile), true, 'Le fichier index.html doit exister');
@@ -35,7 +34,6 @@ test('Doit contenir un fichier HTML avec un bouton', () => {
   );
 });
 
-// Test du contenu JavaScript
 test('Doit contenir du JavaScript pour gérer le clic', () => {
   const jsFile = path.join(__dirname, 'index.js');
   assertEquals(fs.existsSync(jsFile), true, 'Le fichier index.js doit exister');
