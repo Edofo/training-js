@@ -22,7 +22,6 @@ function assertEquals(actual, expected, message = '') {
   }
 }
 
-let voiture;
 try {
   const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
   eval(studentCode);

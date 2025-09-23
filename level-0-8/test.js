@@ -40,7 +40,6 @@ console.log = (...args) => {
   originalLog(...args);
 };
 
-let fruits;
 try {
   const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
   eval(studentCode);

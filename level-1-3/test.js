@@ -29,7 +29,6 @@ console.log = (...args) => {
   originalLog(...args);
 };
 
-let compterJusqua;
 try {
   const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
   eval(studentCode);

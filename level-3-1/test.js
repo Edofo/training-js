@@ -28,7 +28,6 @@ function assertObjectEquals(actual, expected, message = '') {
   }
 }
 
-let grouperParAge;
 try {
   const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
   eval(studentCode);

@@ -33,7 +33,6 @@ function assertArrayEquals(actual, expected, message = '') {
   }
 }
 
-let nombresImpairs;
 try {
   const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
   eval(studentCode);
