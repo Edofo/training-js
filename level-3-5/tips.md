@@ -26,43 +26,6 @@ copie.sort((a, b) => {
 - **Nom** : `a.nom.localeCompare(b.nom)` pour l'ordre alphabétique
 - **Âge** : `a.age - b.age` pour l'ordre croissant
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function trierPersonnes(personnes, critere) {
-    // Créer une copie pour ne pas modifier l'original
-    const copie = [...personnes];
-    
-    // Trier selon le critère
-    copie.sort((a, b) => {
-        if (critere === "nom") {
-            return a.nom.localeCompare(b.nom);
-        } else if (critere === "age") {
-            return a.age - b.age;
-        }
-        return 0; // Cas par défaut
-    });
-    
-    return copie;
-}
-
-// Solution alternative plus explicite :
-function trierPersonnes(personnes, critere) {
-    const copie = personnes.slice(); // Autre façon de copier
-    
-    if (critere === "nom") {
-        copie.sort((a, b) => a.nom.localeCompare(b.nom));
-    } else if (critere === "age") {
-        copie.sort((a, b) => a.age - b.age);
-    }
-    
-    return copie;
-}
-```
-
-</details>
 
 ## Concepts importants
 

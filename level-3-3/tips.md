@@ -29,32 +29,6 @@ const container = document.getElementById('buttons-container');
 container.appendChild(bouton);
 ```
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function ajouterBoutonMagique() {
-    // 1. Créer un nouvel élément bouton
-    const bouton = document.createElement('button');
-    bouton.textContent = 'Bouton Magique ✨';
-    
-    // 2. Ajouter un gestionnaire de clic pour changer la couleur
-    bouton.addEventListener('click', function() {
-        bouton.style.backgroundColor = genererCouleurAleatoire();
-        logStatus('Bouton cliqué ! Nouvelle couleur : ' + bouton.style.backgroundColor);
-    });
-    
-    // 3. Ajouter le bouton au container
-    const container = document.getElementById('buttons-container');
-    container.appendChild(bouton);
-    
-    // 4. Log pour confirmer la création
-    logStatus('Nouveau bouton magique créé !');
-}
-```
-
-</details>
 
 ## Concepts DOM utilisés
 

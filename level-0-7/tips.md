@@ -14,17 +14,6 @@ Commencez à 1 : `for (let i = 1; i <= 5; i++) { ... }`
 ### 🔍 Indice 3
 Dans la boucle, affichez la variable : `console.log(i);`
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-for (let i = 1; i <= 5; i++) {
-    console.log(i);
-}
-```
-
-</details>
 
 ## Pour aller plus loin
 - Changez les limites de la boucle (ex: de 0 à 10)

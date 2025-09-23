@@ -17,34 +17,6 @@ Cherchez un point après la position du @ avec `indexOf('.', positionArobase + 1
 ### 🔍 Indice 4
 L'email est valide si vous trouvez @ ET un point après @
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function estEmailValide(email) {
-    const positionArobase = email.indexOf('@');
-    
-    // Pas de @ trouvé
-    if (positionArobase === -1) {
-        return false;
-    }
-    
-    // Chercher un point après le @
-    const positionPoint = email.indexOf('.', positionArobase + 1);
-    
-    // Retourner true si on a trouvé un point après @
-    return positionPoint !== -1;
-}
-
-// Alternative plus courte :
-function estEmailValide(email) {
-    const arobase = email.indexOf('@');
-    return arobase !== -1 && email.indexOf('.', arobase + 1) !== -1;
-}
-```
-
-</details>
 
 ## Pour aller plus loin
 - Ajoutez d'autres validations (pas d'espaces, longueur minimale, etc.)

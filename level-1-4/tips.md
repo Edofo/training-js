@@ -17,30 +17,6 @@ Si un élément est plus grand que le maximum actuel, mettez à jour le maximum
 ### 🔍 Indice 4
 Retournez le maximum à la fin de la fonction
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function trouverMax(tableau) {
-    let max = tableau[0];
-    
-    for (let i = 1; i < tableau.length; i++) {
-        if (tableau[i] > max) {
-            max = tableau[i];
-        }
-    }
-    
-    return max;
-}
-
-// Solution alternative avec Math.max :
-function trouverMax(tableau) {
-    return Math.max(...tableau);
-}
-```
-
-</details>
 
 ## Pour aller plus loin
 - Créez une fonction `trouverMin` qui trouve le minimum

@@ -14,28 +14,6 @@ Utilisez la méthode `filter()` des tableaux pour créer un nouveau tableau
 ### 🔍 Indice 3
 La méthode filter prend une fonction de test en paramètre : `tableau.filter(element => condition)`
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function nombresImpairs(tableau) {
-    return tableau.filter(nombre => nombre % 2 === 1);
-}
-
-// Alternative avec une boucle :
-function nombresImpairs(tableau) {
-    let resultat = [];
-    for (let i = 0; i < tableau.length; i++) {
-        if (tableau[i] % 2 === 1) {
-            resultat.push(tableau[i]);
-        }
-    }
-    return resultat;
-}
-```
-
-</details>
 
 ## Pour aller plus loin
 - Créez une fonction `nombresPairs` pour les nombres pairs

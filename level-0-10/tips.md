@@ -17,24 +17,6 @@ Ajoutez un gestionnaire de clic : `bouton.addEventListener('click', function() {
 ### 🔍 Indice 4 - Action
 Dans la fonction, affichez le message : `console.log('Clic!');`
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-**HTML (à ajouter dans le fichier index.html) :**
-```html
-<button id="monBouton">Cliquez-moi</button>
-```
-
-**JavaScript (dans index.js) :**
-```javascript
-const bouton = document.getElementById('monBouton');
-bouton.addEventListener('click', function() {
-    console.log('Clic!');
-});
-```
-
-</details>
 
 ## Pour aller plus loin
 - Changez le texte du bouton quand on clique dessus

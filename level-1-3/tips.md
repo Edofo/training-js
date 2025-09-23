@@ -14,19 +14,6 @@ La condition de la boucle doit être `i <= n` pour inclure n
 ### 🔍 Indice 3
 Dans la boucle, affichez la variable de comptage avec `console.log(i)`
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function compterJusqua(n) {
-    for (let i = 1; i <= n; i++) {
-        console.log(i);
-    }
-}
-```
-
-</details>
 
 ## Pour aller plus loin
 - Modifiez la fonction pour compter de 0 à n

@@ -17,26 +17,6 @@ Reconvertissez le tableau en chaîne avec `join('')`
 ### 🔍 Indice 4
 Vous pouvez enchaîner ces méthodes : `mot.split('').reverse().join('')`
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function inverserMot(mot) {
-    return mot.split('').reverse().join('');
-}
-
-// Alternative avec une boucle :
-function inverserMot(mot) {
-    let resultat = '';
-    for (let i = mot.length - 1; i >= 0; i--) {
-        resultat += mot[i];
-    }
-    return resultat;
-}
-```
-
-</details>
 
 ## Pour aller plus loin
 - Créez une fonction qui inverse les mots d'une phrase tout en gardant l'ordre des mots

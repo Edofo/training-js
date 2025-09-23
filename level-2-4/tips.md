@@ -20,35 +20,6 @@ Vérifiez si le caractère est une voyelle et incrémentez le compteur
 ### 🔍 Indice 5
 Convertissez en minuscules pour gérer les majuscules : `caractere.toLowerCase()`
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function compterVoyelles(phrase) {
-    const voyelles = 'aeiou';
-    let compteur = 0;
-    
-    for (let i = 0; i < phrase.length; i++) {
-        if (voyelles.includes(phrase[i].toLowerCase())) {
-            compteur++;
-        }
-    }
-    
-    return compteur;
-}
-
-// Alternative plus moderne :
-function compterVoyelles(phrase) {
-    const voyelles = 'aeiou';
-    return phrase.toLowerCase()
-                 .split('')
-                 .filter(char => voyelles.includes(char))
-                 .length;
-}
-```
-
-</details>
 
 ## Pour aller plus loin
 - Créez une fonction qui compte les consonnes

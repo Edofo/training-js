@@ -14,26 +14,6 @@ L'opérateur `>=` signifie "supérieur ou égal à"
 ### 🔍 Indice 3
 Vous pouvez directement retourner le résultat de la comparaison : `return age >= 18;`
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function estMajeur(age) {
-    return age >= 18;
-}
-
-// Ou version plus explicite :
-function estMajeur(age) {
-    if (age >= 18) {
-        return true;
-    } else {
-        return false;
-    }
-}
-```
-
-</details>
 
 ## Pour aller plus loin
 - Quelle est la différence entre les deux versions de la solution ?

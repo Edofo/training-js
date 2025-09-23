@@ -24,59 +24,6 @@ Moyenne = total ÷ nombre d'éléments : `total / nombres.length`
 ### 🔍 Indice 4 - Min et Max
 Utilisez `Math.min(...nombres)` et `Math.max(...nombres)` ou une boucle
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function statistiques(nombres) {
-    // Calcul du total
-    let total = 0;
-    for (let i = 0; i < nombres.length; i++) {
-        total += nombres[i];
-    }
-    
-    // Calcul de la moyenne
-    const moyenne = total / nombres.length;
-    
-    // Trouver min et max
-    let min = nombres[0];
-    let max = nombres[0];
-    
-    for (let i = 1; i < nombres.length; i++) {
-        if (nombres[i] < min) {
-            min = nombres[i];
-        }
-        if (nombres[i] > max) {
-            max = nombres[i];
-        }
-    }
-    
-    return {
-        moyenne: moyenne,
-        min: min,
-        max: max,
-        total: total
-    };
-}
-
-// Solution alternative avec les méthodes de tableau :
-function statistiques(nombres) {
-    const total = nombres.reduce((somme, nombre) => somme + nombre, 0);
-    const moyenne = total / nombres.length;
-    const min = Math.min(...nombres);
-    const max = Math.max(...nombres);
-    
-    return {
-        moyenne,
-        min,
-        max,
-        total
-    };
-}
-```
-
-</details>
 
 ## Méthodes utiles
 

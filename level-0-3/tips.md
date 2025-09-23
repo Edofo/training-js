@@ -14,18 +14,6 @@ Pour additionner, utilisez l'opérateur `+` : `a + b`
 ### 🔍 Indice 3
 Affichez le résultat avec : `console.log(a + b);`
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-let a = 5;
-let b = 3;
-console.log(a + b);
-```
-
-</details>
-
 ## Pour aller plus loin
 - Essayez avec d'autres opérateurs : `-`, `*`, `/`
 - Que se passe-t-il si vous stockez le résultat dans une variable ?

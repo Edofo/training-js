@@ -17,20 +17,6 @@ Concaténez les chaînes avec `+` : `"Bonjour " + prenom + "!"`
 ### 🔍 Indice 4
 Appelez la fonction avec un argument : `direBonjour("Pierre");`
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function direBonjour(prenom) {
-    console.log("Bonjour " + prenom + "!");
-}
-
-direBonjour("Pierre");
-```
-
-</details>
-
 ## Pour aller plus loin
 - Essayez avec différents prénoms
 - Pouvez-vous utiliser les template literals (backticks) à la place ? `\`Bonjour ${prenom}!\``

@@ -14,16 +14,6 @@ La syntaxe est : `console.log("votre message");`
 ### 🔍 Indice 3
 N'oubliez pas les guillemets autour du texte !
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-console.log("Hello World!");
-```
-
-</details>
-
 ## Pour aller plus loin
 - Essayez d'afficher d'autres messages
 - Que se passe-t-il si vous oubliez les guillemets ?

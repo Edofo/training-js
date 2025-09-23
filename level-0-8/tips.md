@@ -14,16 +14,6 @@ Les éléments d'un tableau sont indexés à partir de 0
 ### 🔍 Indice 3
 Pour accéder au premier élément : `fruits[0]`
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-let fruits = ["pomme", "banane", "orange"];
-console.log(fruits[0]);
-```
-
-</details>
 
 ## Pour aller plus loin
 - Affichez tous les fruits du tableau

@@ -31,32 +31,6 @@ function factorielle(n) {
 }
 ```
 
-## Solution
-<details>
-<summary>Cliquez pour voir la solution</summary>
-
-```javascript
-function factorielle(n) {
-    // Cas de base : arrêter la récursion
-    if (n <= 1) {
-        return 1;
-    }
-    
-    // Cas récursif : n × factorielle(n-1)
-    return n * factorielle(n - 1);
-}
-
-// Version plus explicite :
-function factorielle(n) {
-    if (n === 0 || n === 1) {
-        return 1;
-    } else {
-        return n * factorielle(n - 1);
-    }
-}
-```
-
-</details>
 
 ## Déroulement pour factorielle(5)
 ```
