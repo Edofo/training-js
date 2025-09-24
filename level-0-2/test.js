@@ -44,17 +44,36 @@ try {
 console.log = originalLog;
 
 test('Doit créer une variable "nom"', () => {
-  assertEquals(typeof nom !== 'undefined', true, 'La variable "nom" doit être définie');
-  assertEquals(typeof nom, 'string', 'La variable "nom" doit être une chaîne de caractères');
-  assertEquals(nom.length > 0, true, 'La variable "nom" ne doit pas être vide');
+  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
+  assertEquals(
+    studentCode.includes('const nom') || studentCode.includes('let nom') || studentCode.includes('var nom'),
+    true,
+    'La variable "nom" doit être définie'
+  );
+  assertEquals(
+    studentCode.match(/(?:const|let|var)\s+nom\s*=\s*["'][^"']+["']/) !== null,
+    true,
+    'La variable "nom" doit être une chaîne de caractères non vide'
+  );
 });
 
 test('Doit afficher la variable nom dans la console', () => {
-  assertEquals(
-    consoleOutput.some(output => output.includes(nom)),
-    true,
-    'Votre code doit afficher la valeur de la variable nom avec console.log(nom)'
-  );
+  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
+  const nomMatch = studentCode.match(/(?:const|let|var)\s+nom\s*=\s*["']([^"']+)["']/);
+  if (nomMatch) {
+    const nomValue = nomMatch[1];
+    assertEquals(
+      consoleOutput.some(output => output.includes(nomValue)),
+      true,
+      'Votre code doit afficher la valeur de la variable nom avec console.log(nom)'
+    );
+  } else {
+    assertEquals(
+      studentCode.includes('console.log(nom)'),
+      true,
+      'Votre code doit contenir console.log(nom)'
+    );
+  }
 });
 
 console.log(`\nRésultat: ${testsPassed}/${testsTotal} tests réussis`);

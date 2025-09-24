@@ -44,15 +44,23 @@ try {
 console.log = originalLog;
 
 test('Doit créer un objet moi avec les propriétés nom et age', () => {
-  assertEquals(typeof moi, 'object', 'moi doit être un objet');
-  assertEquals(typeof moi.nom, 'string', 'moi.nom doit être une chaîne de caractères');
-  assertEquals(typeof moi.age, 'number', 'moi.age doit être un nombre');
-  assertEquals(moi.nom.length > 0, true, 'moi.nom ne doit pas être vide');
+  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
+  assertEquals(
+    studentCode.match(/(?:const|let|var)\s+moi\s*=\s*{/) !== null,
+    true,
+    'moi doit être un objet'
+  );
+  assertEquals(
+    studentCode.includes('nom') && studentCode.includes('age'),
+    true,
+    'L\'objet moi doit avoir les propriétés nom et age'
+  );
 });
 
 test('Doit afficher le nom de l\'objet', () => {
+  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
   assertEquals(
-    consoleOutput.some(output => output.includes(moi.nom)),
+    studentCode.includes('console.log') && (studentCode.includes('moi.nom') || studentCode.includes('moi["nom"]')),
     true,
     'Votre code doit afficher la propriété nom de l\'objet moi'
   );

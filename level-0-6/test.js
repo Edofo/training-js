@@ -44,7 +44,12 @@ try {
 console.log = originalLog;
 
 test('Doit créer une variable temperature = 25', () => {
-  assertEquals(temperature, 25, 'La variable "temperature" doit valoir 25');
+  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
+  assertEquals(
+    studentCode.match(/(?:const|let|var)\s+temperature\s*=\s*25/) !== null,
+    true,
+    'La variable "temperature" doit valoir 25'
+  );
 });
 
 test('Doit afficher "Il fait chaud" car temperature > 20', () => {

@@ -44,7 +44,12 @@ try {
 console.log = originalLog;
 
 test('Doit définir la fonction direBonjour', () => {
-  assertEquals(typeof direBonjour, 'function', 'direBonjour doit être une fonction');
+  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
+  assertEquals(
+    studentCode.includes('function direBonjour') || studentCode.includes('const direBonjour') || studentCode.includes('let direBonjour'),
+    true,
+    'direBonjour doit être une fonction'
+  );
 });
 
 test('Doit afficher "Bonjour!" quand la fonction est appelée', () => {

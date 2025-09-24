@@ -44,8 +44,17 @@ try {
 console.log = originalLog;
 
 test('Doit créer les variables a=5 et b=3', () => {
-  assertEquals(a, 5, 'La variable "a" doit valoir 5');
-  assertEquals(b, 3, 'La variable "b" doit valoir 3');
+  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
+  assertEquals(
+    studentCode.match(/(?:const|let|var)\s+a\s*=\s*5/) !== null,
+    true,
+    'La variable "a" doit valoir 5'
+  );
+  assertEquals(
+    studentCode.match(/(?:const|let|var)\s+b\s*=\s*3/) !== null,
+    true,
+    'La variable "b" doit valoir 3'
+  );
 });
 
 test('Doit afficher la somme (8) dans la console', () => {

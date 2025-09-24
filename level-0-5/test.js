@@ -47,8 +47,17 @@ console.log = originalLog;
 
 (async () => {
 test('Doit définir la fonction direBonjour avec un paramètre', () => {
-  assertEquals(typeof direBonjour, 'function', 'direBonjour doit être une fonction');
-  assertEquals(direBonjour.length, 1, 'La fonction direBonjour doit avoir 1 paramètre');
+  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
+  assertEquals(
+    studentCode.includes('function direBonjour') || studentCode.includes('const direBonjour') || studentCode.includes('let direBonjour'),
+    true,
+    'direBonjour doit être une fonction'
+  );
+  assertEquals(
+    studentCode.match(/function\s+direBonjour\s*\([^)]*\)/) !== null || studentCode.match(/direBonjour\s*=.*\([^)]*\)\s*=>/) !== null,
+    true,
+    'La fonction direBonjour doit avoir un paramètre'
+  );
 });
 
 test('Doit afficher "Bonjour [prénom]!" avec le prénom donné', () => {

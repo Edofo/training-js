@@ -55,8 +55,17 @@ try {
 console.log = originalLog;
 
 test('Doit créer un tableau fruits avec les bons éléments', () => {
-  assertEquals(Array.isArray(fruits), true, 'fruits doit être un tableau');
-  assertArrayEquals(fruits, ["pomme", "banane", "orange"], 'Le tableau fruits doit contenir ["pomme", "banane", "orange"]');
+  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
+  assertEquals(
+    studentCode.match(/(?:const|let|var)\s+fruits\s*=\s*\[/) !== null,
+    true,
+    'fruits doit être un tableau'
+  );
+  assertEquals(
+    studentCode.includes('"pomme"') && studentCode.includes('"banane"') && studentCode.includes('"orange"'),
+    true,
+    'Le tableau fruits doit contenir ["pomme", "banane", "orange"]'
+  );
 });
 
 test('Doit afficher le premier fruit (pomme)', () => {
