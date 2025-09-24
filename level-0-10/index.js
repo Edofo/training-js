@@ -15,3 +15,9 @@ console.log = function(...args) {
     originalConsoleLog.apply(console, args);
     logToVisualConsole(args.join(' '));
 };
+
+var btn = document.getElementById("click");
+
+btn.addEventListener('click', () => {
+    console.log('Click!');
+});

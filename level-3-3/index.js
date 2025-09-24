@@ -20,3 +20,15 @@ function genererCouleurAleatoire() {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { ajouterBoutonMagique, genererCouleurAleatoire };
 }
+
+function ajouterBoutonMagique() {
+    const btn = document.createElement('button');
+    btn.textContent = 'tee';
+    btn.style.padding = '20px';
+    btn.addEventListener('click',function(){
+        let couleuraleatoire = genererCouleurAleatoire();
+        btn.style.backgroundColor = couleuraleatoire
+    });
+    document.body.appendChild(btn);
+
+}
