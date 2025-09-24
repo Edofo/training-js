@@ -1,10 +1,14 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let testsPassed = 0;
 let testsTotal = 0;
 
-function test(description, testFn) {
+const test = (description, testFn) => {
   testsTotal++;
   try {
     testFn();
@@ -16,7 +20,7 @@ function test(description, testFn) {
   }
 }
 
-function assertEquals(actual, expected, message = '') {
+const assertEquals = (actual, expected, message = '') => {
   if (actual !== expected) {
     throw new Error(`${message}\n   Attendu: ${expected}\n   Reçu: ${actual}`);
   }
@@ -37,14 +41,17 @@ function assertObjectEquals(actual, expected, message = '') {
   }
 }
 
+let statistiques;
 try {
-  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
-  eval(studentCode);
+  const module = await import('./index.js');
+  statistiques = module.statistiques;
 } catch (error) {
   console.log(`❌ Erreur lors du chargement du code: ${error.message}`);
   process.exit(1);
 }
 
+
+(async () => {
 test('Doit définir la fonction statistiques', () => {
   assertEquals(typeof statistiques, 'function', 'statistiques doit être une fonction');
   assertEquals(statistiques.length, 1, 'La fonction statistiques doit avoir 1 paramètre');
@@ -112,3 +119,5 @@ if (testsPassed === testsTotal) {
 } else {
   process.exit(1);
 }
+
+})();

@@ -2,6 +2,4 @@
 // Objectif: Créez une fonction grouperParAge(personnes) qui prend un tableau d'objets {nom, age} et retourne un objet groupé par tranche d'âge (0-17, 18-64, 65+)
 
 
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { grouperParAge };
-}
+export { grouperParAge };

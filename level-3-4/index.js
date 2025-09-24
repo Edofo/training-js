@@ -2,6 +2,4 @@
 // Objectif: Créez une fonction statistiques(nombres) qui retourne un objet avec {moyenne, min, max, total} pour un tableau de nombres
 
 
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { statistiques };
-}
+export { statistiques };

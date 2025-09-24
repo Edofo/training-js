@@ -1,5 +1,11 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const require = createRequire(import.meta.url);
 
 const colors = {
   green: (text) => `\x1b[32m${text}\x1b[0m`,
@@ -18,7 +24,7 @@ const levels = [
   { name: 'Niveau 3 - Intermédiaire+', folder: 'level-3', exercises: 5 }
 ];
 
-function runTest(testFile, watchMode = false) {
+const runTest = async (testFile, watchMode = false) => {
   try {
     const originalCwd = process.cwd();
     const originalExit = process.exit;
@@ -31,29 +37,9 @@ function runTest(testFile, watchMode = false) {
       };
     }
     
-    const testContent = fs.readFileSync(testFile, 'utf8');
-    
-    const testContext = {
-      require: require,
-      console: console,
-      process: process,
-      Buffer: Buffer,
-      __dirname: testDir,
-      __filename: testFile,
-      module: { exports: {} },
-      exports: {},
-      setTimeout: setTimeout,
-      clearTimeout: clearTimeout,
-      setInterval: setInterval,
-      clearInterval: clearInterval
-    };
-    
-    const testFunction = new Function(
-      ...Object.keys(testContext),
-      testContent
-    );
-    
-    testFunction(...Object.values(testContext));
+    // Use dynamic import for ES6 modules
+    const testFileUrl = `file://${testFile}?t=${Date.now()}`;
+    await import(testFileUrl);
     
     process.chdir(originalCwd);
     process.exit = originalExit;
@@ -74,7 +60,7 @@ function runTest(testFile, watchMode = false) {
   }
 }
 
-function runExercise(level, exercise, watchMode = false) {
+const runExercise = async (level, exercise, watchMode = false) => {
   const exerciseFolder = `${levels[level].folder}-${exercise}`;
   const testFile = path.join(__dirname, exerciseFolder, 'test.js');
   
@@ -86,7 +72,7 @@ function runExercise(level, exercise, watchMode = false) {
   console.log(colors.blue(`\n🧪 Test de l'exercice ${level}.${exercise}`));
   console.log(colors.cyan(`📁 Dossier: ${exerciseFolder}`));
   
-  const success = runTest(testFile, watchMode);
+  const success = await runTest(testFile, watchMode);
   
   if (success) {
     console.log(colors.green(`✅ Exercice ${level}.${exercise} réussi !`));
@@ -101,14 +87,14 @@ function runExercise(level, exercise, watchMode = false) {
   }
 }
 
-function runLevel(levelIndex, watchMode = false) {
+const runLevel = async (levelIndex, watchMode = false) => {
   const level = levels[levelIndex];
   console.log(colors.bold(`\n🎯 ${level.name}`));
   
   let passedExercises = 0;
   
   for (let i = 1; i <= level.exercises; i++) {
-    if (runExercise(levelIndex, i, watchMode)) {
+    if (await runExercise(levelIndex, i, watchMode)) {
       passedExercises++;
     } else {
       break;
@@ -129,14 +115,14 @@ function runLevel(levelIndex, watchMode = false) {
   }
 }
 
-function checkExerciseExists(level, exercise) {
+const checkExerciseExists = (level, exercise) => {
   const exerciseFolder = `${levels[level].folder}-${exercise}`;
   const indexFile = path.join(__dirname, exerciseFolder, 'index.js');
   const testFile = path.join(__dirname, exerciseFolder, 'test.js');
   return fs.existsSync(indexFile) && fs.existsSync(testFile);
 }
 
-function testExerciseSilently(level, exercise) {
+const testExerciseSilently = async (level, exercise) => {
   const exerciseFolder = `${levels[level].folder}-${exercise}`;
   const testFile = path.join(__dirname, exerciseFolder, 'test.js');
   
@@ -159,7 +145,7 @@ function testExerciseSilently(level, exercise) {
     
     const testContent = fs.readFileSync(testFile, 'utf8');
     
-    const vm = require('vm');
+    const vm = await import('vm');
     const context = vm.createContext({
       require: require,
       console: { log: () => {}, error: () => {} },
@@ -193,18 +179,18 @@ function testExerciseSilently(level, exercise) {
   }
 }
 
-function showProgress() {
+const showProgress = async () => {
   console.log(colors.bold('\n📈 Progression générale:'));
   console.log(colors.cyan('⏳ Analyse de vos solutions en cours...'));
   
-  levels.forEach((level, index) => {
+  for (const [index, level] of levels.entries()) {
     let total = 0;
     let passed = 0;
     
     for (let i = 1; i <= level.exercises; i++) {
       if (checkExerciseExists(index, i)) {
         total++;
-        if (testExerciseSilently(index, i)) {
+        if (await testExerciseSilently(index, i)) {
           passed++;
         }
       }
@@ -221,14 +207,14 @@ function showProgress() {
     }
     
     console.log(`${status} ${level.name}: ${passed}/${total} tests réussis (${percentage}%)`);
-  });
+  }
   
   console.log(colors.yellow('\n💡 Pour tester individuellement:'));
   console.log('   npm run test:level 0        - Tester tout le niveau 0');
   console.log('   npm run test:exercise 0.1   - Tester l\'exercice 0.1');
 }
 
-function watchFiles(callback) {
+const watchFiles = (callback) => {
   const watchedDirs = [];
   
   levels.forEach((level, index) => {
@@ -262,7 +248,7 @@ function watchFiles(callback) {
   });
 }
 
-function main() {
+const main = async () => {
   const args = process.argv.slice(2);
   
   console.log(colors.bold('🚀 JavaScript TDD Exercises'));
@@ -290,10 +276,10 @@ function main() {
     const levelIndex = parseInt(args[args.indexOf('--level') + 1]);
     if (levelIndex >= 0 && levelIndex < levels.length) {
       if (isWatch) {
-        runLevel(levelIndex, true);
-        watchFiles(() => runLevel(levelIndex, true));
+        await runLevel(levelIndex, true);
+        watchFiles(async () => await runLevel(levelIndex, true));
       } else {
-        runLevel(levelIndex);
+        await runLevel(levelIndex);
       }
     } else {
       console.log(colors.red('❌ Niveau invalide. Utilisez 0, 1, 2 ou 3'));
@@ -309,10 +295,10 @@ function main() {
     
     if (level >= 0 && level < levels.length && exercise >= 1 && exercise <= levels[level].exercises) {
       if (isWatch) {
-        runExercise(level, exercise, true);
-        watchFiles(() => runExercise(level, exercise, true));
+        await runExercise(level, exercise, true);
+        watchFiles(async () => await runExercise(level, exercise, true));
       } else {
-        runExercise(level, exercise);
+        await runExercise(level, exercise);
       }
     } else {
       console.log(colors.red('❌ Exercice invalide. Format: niveau.exercice (ex: 0.1)'));
@@ -321,13 +307,15 @@ function main() {
   }
   
   if (isWatch) {
-    showProgress();
-    watchFiles(() => showProgress());
+    await showProgress();
+    watchFiles(async () => await showProgress());
     return;
   }
   
-  showProgress();
+  await showProgress();
   console.log(colors.yellow('\n💡 Utilisez --help pour voir toutes les commandes disponibles'));
 }
 
-main();
+(async () => {
+  await main();
+})();

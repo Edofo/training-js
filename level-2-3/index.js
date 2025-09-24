@@ -2,6 +2,4 @@
 // Objectif: Créez une fonction nombresImpairs(tableau) qui retourne un nouveau tableau contenant seulement les nombres impairs
 
 
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { nombresImpairs };
-}
+export { nombresImpairs };

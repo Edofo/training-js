@@ -1,10 +1,14 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let testsPassed = 0;
 let testsTotal = 0;
 
-function test(description, testFn) {
+const test = (description, testFn) => {
   testsTotal++;
   try {
     testFn();
@@ -16,20 +20,23 @@ function test(description, testFn) {
   }
 }
 
-function assertEquals(actual, expected, message = '') {
+const assertEquals = (actual, expected, message = '') => {
   if (actual !== expected) {
     throw new Error(`${message}\n   Attendu: ${expected}\n   Reçu: ${actual}`);
   }
 }
 
+let factorielle;
 try {
-  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
-  eval(studentCode);
+  const module = await import('./index.js');
+  factorielle = module.factorielle;
 } catch (error) {
   console.log(`❌ Erreur lors du chargement du code: ${error.message}`);
   process.exit(1);
 }
 
+
+(async () => {
 test('Doit définir la fonction factorielle', () => {
   assertEquals(typeof factorielle, 'function', 'factorielle doit être une fonction');
   assertEquals(factorielle.length, 1, 'La fonction factorielle doit avoir 1 paramètre');
@@ -75,3 +82,5 @@ if (testsPassed === testsTotal) {
 } else {
   process.exit(1);
 }
+
+})();
