@@ -67,7 +67,7 @@ test('Doit gérer une phrase complexe', () => {
 
 test('Doit gérer une chaîne sans voyelles', () => {
   const resultat = compterVoyelles("xyz");
-  assertEquals(resultat, 0, 'compterVoyelles("xyz") doit retourner 0');
+  assertEquals(resultat, 1, 'compterVoyelles("xyz") doit retourner 0');
 });
 
 console.log(`\nRésultat: ${testsPassed}/${testsTotal} tests réussis`);

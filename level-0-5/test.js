@@ -33,10 +33,9 @@ console.log = (...args) => {
   originalLog(...args);
 };
 
-let direBonjour;
 try {
-  const module = await import('./index.js');
-  direBonjour = module.direBonjour;
+  const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
+  eval(studentCode);
 } catch (error) {
   console.log(`❌ Erreur lors du chargement du code: ${error.message}`);
   process.exit(1);
@@ -44,8 +43,6 @@ try {
 
 console.log = originalLog;
 
-
-(async () => {
 test('Doit définir la fonction direBonjour avec un paramètre', () => {
   const studentCode = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
   assertEquals(
@@ -77,5 +74,3 @@ if (testsPassed === testsTotal) {
 } else {
   process.exit(1);
 }
-
-})();
